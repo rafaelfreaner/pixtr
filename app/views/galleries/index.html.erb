@@ -1,0 +1,6 @@
+<!-- <a href="/galleries/new">New Gallery</a> -->
+<%= link_to "New Gallery", "/galleries/new" %> <!-- THIS IS THE SAME AS THE ABOVE LINK TAG -->
+
+<% @galleries.each do |gallery| %>
+  <%= link_to gallery.name, gallery %> 
+<% end %>

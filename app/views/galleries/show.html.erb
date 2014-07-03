@@ -1,0 +1,17 @@
+<h1><%= @gallery.name %><h1>
+
+<h2><%= @gallery.description %><h2>
+
+<% @gallery.images.each do |image| %>
+	<%= link_to image_tag(image.url), [@gallery, image] %>
+<% end %>
+
+<div>	
+<%= link_to "Add Image", new_gallery_image_path(@gallery) %>
+
+<%= link_to "Destroy", @gallery, method: :delete, data: { confirm: "Are you sure?" } %>
+
+<%= link_to "Edit Gallery", edit_gallery_path(@gallery) %>
+</div>
+
+

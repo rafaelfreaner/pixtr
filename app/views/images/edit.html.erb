@@ -1,0 +1,17 @@
+<h1>Edit <%= @image.name %></h1>
+
+<%= form_for([@image.gallery, @image]) do |form| %> <!-- FORM HAS A PATH_GALLERY METHOD WHICH NEEDS US TO DEFINE IT BY PUTTING AS: :GALLERY IN THE CONTROLLERS-->
+  <div>
+  	<%= form.label :name %>
+  	<%= form.text_field :name %>
+  </div>
+  <div>
+  	<%= form.label :description %>
+  	<%= form.text_area :description %>
+  </div>
+  <div>
+  	<%= form.label :url %>
+  	<%= form.text_area :url %>
+  </div>
+  <%= form.submit "Update" %>
+<% end %>
