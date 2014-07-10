@@ -8,12 +8,21 @@
 <div>
 	<%= pluralize(@image.likes.count, "Like") %> <!-- PLURALIZE KNOWS WHEN TO DISPLAY LIKE INSTEAD OF LIKES -->
 	<% if current_user.likes?(@image) %>
-	  <%= link_to "Unlike", [unlike_gallery_image_path(@gallery, @image)], method: :delete %>
+	  <%= link_to "Unlike", unlike_gallery_image_path(@gallery, @image), method: :delete %>
 	<% else %>
 	  <%= link_to "Like", like_gallery_image_path(@gallery, @image), method: :post %>
 	<% end %>
 </div>
 
+<section class="tags">
+	<h2>TAGS</h2>
+	<% @image.tags.each do |tag| %>
+	  <div><%= tag %></div>
+	<% end %>
+</section>
+
+
+<section>
 <%= form_for([@gallery, @image, @comment]) do |form| %>
   <div>
   	<%= form.label :content %>
@@ -21,5 +30,8 @@
   </div>
   <%= form.submit %>
 <% end %>
+</section>
+
+
 
 <%= render @image.comments %>

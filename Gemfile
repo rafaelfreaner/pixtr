@@ -28,6 +28,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'monban', '~> 0.1.0'
 
+#tagging
+gem 'acts-as-taggable-on', '~> 3.2.6'
+
 group :development do
   gem 'quiet_assets'
 end
