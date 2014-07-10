@@ -1,9 +1,27 @@
+require "monban/constraints/signed_in"
+
 Rails.application.routes.draw do
-  root to: "galleries#index" #THIS IS TO REDIRECT THE ROOT TO THE GALLERIES PAGE
+  constraints Monban::Constraints::SignedIn.new do
+    root "dashboards#show", as: :dashboard
+  end
+  root to: "homes#show" #THIS IS TO REDIRECT THE ROOT TO THE GALLERIES PAGE
   resource :session, only: [:new, :create, :destroy]
-  resources :users 
+  resources :users
+  resource :dashboard, only: [:show]
+  resources :groups do
+    member do
+      post "join" => "group_memberships#create"
+      delete "leave" => "group_memberships#destroy"
+    end
+  end
   resources :galleries do
-    resources :images #THIS DO STATEMENT IS FOR NESTED RESOURCES, BECAUSE WE WANT IMAGES INSIDE GALLERIES. /GALLERIES/IMAGES/ID
+    resources :images do#THIS DO STATEMENT IS FOR NESTED RESOURCES, BECAUSE WE WANT IMAGES INSIDE GALLERIES. /GALLERIES/IMAGES/ID
+      resources :comments
+      member do
+        post "like" => "likes#create"
+        delete "unlike" => "likes#destroy"
+      end
+    end
                       #WE CAN LIMITD THE ROUTES BY DEFINING resources :images, only: [:new]
   end
 

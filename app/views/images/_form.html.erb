@@ -1,0 +1,18 @@
+<%= render "errors", object: form.object %>
+
+<div>
+	<%= form.label :name %>
+	<%= form.text_field :name %>
+</div>
+
+<div>
+	<%= form.label :description %>
+	<%= form.text_field :description %>
+</div>
+
+<div>
+	<%= form.label :url %>
+	<%= form.text_field :url %>
+</div>
+
+<%= f.collection_check_boxes :group_ids, current.user.groups, :id, :name %>

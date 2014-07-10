@@ -1,6 +1,8 @@
 class ImagesController < ApplicationController
 	def show
 		@image = Image.find(params[:id])
+		@comment = Comment.new
+		@gallery = @image.gallery
 	end
 
 	def new
@@ -13,7 +15,7 @@ class ImagesController < ApplicationController
 		@image = Image.create(image_params)
 		@image.gallery_id = params[:gallery_id]
 		if @image.save
-			redirect_to gallery_path(image.gallery)
+			redirect_to gallery_path(@image.gallery)
 		else
 			render :new
 		end

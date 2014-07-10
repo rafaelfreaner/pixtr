@@ -1,4 +1,6 @@
 class GalleriesController < ApplicationController
+  before_action :require_login
+
   def index
   	@galleries = Gallery.all
   end
@@ -9,7 +11,10 @@ class GalleriesController < ApplicationController
 
   def create
   	# render text: params.inspect   THIS SHOWS ALL THE PARAMS FOR :GALLERY
-  	Gallery.create(gallery_params)
+    params_with_user_id = gallery_params.merge(
+      user_id: current_user.id
+      )
+  	Gallery.create(params_with_user_id)
   	redirect_to "/galleries"
   end
 

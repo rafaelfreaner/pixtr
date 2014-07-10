@@ -1,5 +1,25 @@
-<img src= "<%= @image.url %>" >/
 
 <%= link_to "Destroy", [@image.gallery, @image], method: :delete, data: { confirm: "Are you sure?" } %>
 
 <%= link_to "Edit Image", edit_gallery_image_path %>
+
+<%= image_tag @image.url %>
+
+<div>
+	<%= pluralize(@image.likes.count, "Like") %> <!-- PLURALIZE KNOWS WHEN TO DISPLAY LIKE INSTEAD OF LIKES -->
+	<% if current_user.likes?(@image) %>
+	  <%= link_to "Unlike", [unlike_gallery_image_path(@gallery, @image)], method: :delete %>
+	<% else %>
+	  <%= link_to "Like", like_gallery_image_path(@gallery, @image), method: :post %>
+	<% end %>
+</div>
+
+<%= form_for([@gallery, @image, @comment]) do |form| %>
+  <div>
+  	<%= form.label :content %>
+  	<%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= render @image.comments %>

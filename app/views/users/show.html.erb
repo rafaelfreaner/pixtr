@@ -1,0 +1,7 @@
+<h1><$= @user.email %>'s Galleries</h1>
+
+<% @user.galleries.each do |gallery| %>
+	<%= render gallery %> 
+<% end %>
+
+<!-- <%= render @user.galleries %> THIS IS ANOTHER WAY TO PUT THE ABOVE WHEN USING ARRAYS AS PARAMETERS -->
