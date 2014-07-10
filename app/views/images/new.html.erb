@@ -1,19 +1,6 @@
 <h1>Create a new Image</h1>
 
-<%= form_for([@gallery, @image]) do |form| %>
-  <%= render "errors", object: form.object %>
-  <div>
-  	<%= form.label :name %>
-  	<%= form.text_field :name %>
-  </div>
-  <div>
-  	<%= form.label :description %>
-  	<%= form.text_area :description %>
-  </div>
-  <div>
-  	<%= form.label :url %>
-  	<%= form.text_area :url %>
-  </div>
-  <%= form.submit "Create" %>
+<%= form_for([@image.gallery, @image]) do |form| %> <!-- FORM HAS A PATH_GALLERY METHOD WHICH NEEDS US TO DEFINE IT BY PUTTING AS: :GALLERY IN THE CONTROLLERS-->
+  <%= render form %>
+  <%= form.submit "Create Image" %>
 <% end %>
-

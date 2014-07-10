@@ -15,4 +15,11 @@
 	<%= form.text_field :url %>
 </div>
 
-<%= f.collection_check_boxes :group_ids, current.user.groups, :id, :name %>
+<div>
+<%= form.collection_check_boxes(:group_ids, current_user.groups, :id, :name) %>
+</div>
+
+<div>
+	<%= form.label :tag_list %>
+	<%= form.text_field :tag_list %>
+</div>

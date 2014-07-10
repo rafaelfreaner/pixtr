@@ -53,7 +53,7 @@ class ImagesController < ApplicationController
   def image_params
   	params.
   	  require(:image). # THE PERIODS COME BECAUSE THIS USED TO BE A ONE LINE METHOD, BUT WE BROKE IT INTO THREE LINES FOR FORMATTING
-  	  permit(:name, :description, :url) #THIS PERMITS THE VALUES NAME AND DESCRIPTION FOR GALLERY
+  	  permit(:name, :description, :url, :tag_list, group_ids: []) #THIS PERMITS THE VALUES NAME AND DESCRIPTION FOR GALLERY
   end
 
 end

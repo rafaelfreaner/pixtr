@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :galleries do
     resources :images do#THIS DO STATEMENT IS FOR NESTED RESOURCES, BECAUSE WE WANT IMAGES INSIDE GALLERIES. /GALLERIES/IMAGES/ID
       resources :comments
+      resources :tags, only: [:show]
       member do
         post "like" => "likes#create"
         delete "unlike" => "likes#destroy"

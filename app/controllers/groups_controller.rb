@@ -10,12 +10,12 @@ class GroupsController < ApplicationController
 	end
 
 	def create
-		group = Group.new(group_params)
+		@group = Group.new(group_params)
 		@group.users << current_user
 		
-		if group.save
-			GroupMembership.create(user: current_user, group: group)
-			redirect_to group
+		if @group.save
+			GroupMembership.create(user: current_user, group: @group)
+			redirect_to @group
 		else
 			render :new
 		end
@@ -23,12 +23,6 @@ class GroupsController < ApplicationController
 
 	def show
 		@group = Group.find(params[:id])
-	end
-
-	def destroy
-		group = GroupMembership.find(params[:id])
-		group.destroy
-		redirect_to dashboard_path
 	end
 
 	private

@@ -17,12 +17,13 @@
 <section class="tags">
 	<h2>TAGS</h2>
 	<% @image.tags.each do |tag| %>
-	  <div><%= tag %></div>
+	  <div><%= link_to tag.name, gallery_image_tag_path(@gallery, @image, tag.name) %></div>
 	<% end %>
 </section>
 
 
 <section>
+	<h2>Comments</h2>
 <%= form_for([@gallery, @image, @comment]) do |form| %>
   <div>
   	<%= form.label :content %>
@@ -33,5 +34,6 @@
 </section>
 
 
-
+<section>
 <%= render @image.comments %>
+</section>
