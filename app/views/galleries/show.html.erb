@@ -2,6 +2,15 @@
 
 <h2><%= @gallery.description %><h2>
 
+<div>
+	<%= pluralize(@gallery.gallery_likes.count, "Like") %> <!-- PLURALIZE KNOWS WHEN TO DISPLAY LIKE INSTEAD OF LIKES -->
+	<% if current_user.likes_gallery?(@gallery) %>
+	  <%= link_to "Unlike", unlike_gallery_path(@gallery), method: :delete %>
+	<% else %>
+	  <%= link_to "Like", like_gallery_path(@gallery), method: :post %>
+	<% end %>
+</div>	
+
 <% @gallery.images.each do |image| %>
 	<%= link_to image_tag(image.url), [@gallery, image] %>
 <% end %>

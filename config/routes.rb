@@ -10,17 +10,23 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show]
   resources :groups do
     member do
+      post "like" => "group_likes#create"
+      delete "unlike" => "group_likes#destroy"
       post "join" => "group_memberships#create"
       delete "leave" => "group_memberships#destroy"
     end
   end
   resources :galleries do
+    member do
+      post "like" => "gallery_likes#create"
+      delete "unlike" => "gallery_likes#destroy"
+    end
     resources :images do#THIS DO STATEMENT IS FOR NESTED RESOURCES, BECAUSE WE WANT IMAGES INSIDE GALLERIES. /GALLERIES/IMAGES/ID
       resources :comments
       resources :tags, only: [:show]
       member do
-        post "like" => "likes#create"
-        delete "unlike" => "likes#destroy"
+        post "like" => "image_likes#create"
+        delete "unlike" => "image_likes#destroy"
       end
     end
                       #WE CAN LIMITD THE ROUTES BY DEFINING resources :images, only: [:new]
